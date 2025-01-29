@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h2>Employee Registration Page</h2>
+    <form id="employeeForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" required>
+
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" required>
+
+        <label for="designation">Designation:</label>
+        <input type="text" id="designation" required>
+
+        <label for="experience">Experience (Years):</label>
+        <input type="number" id="experience" required>
+
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <a href="table.html">View Employees</a>
+</div>
+
+<script>
+    document.getElementById("employeeForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let employees = JSON.parse(localStorage.getItem("employees")) || [];
+
+        let newEmployee = {
+            name: document.getElementById("name").value,
+            department: document.getElementById("department").value,
+            salary: document.getElementById("salary").value,
+            age: document.getElementById("age").value,
+            address: document.getElementById("address").value,
+            designation: document.getElementById("designation").value,
+            experience: document.getElementById("experience").value
+        };
+
+        employees.push(newEmployee);
+        localStorage.setItem("employees", JSON.stringify(employees));
+
+        alert("Employee added successfully!");
+        document.getElementById("employeeForm").reset();
+    });
+</script>
+</body>
+</html>
